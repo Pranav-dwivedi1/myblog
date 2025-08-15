@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title><%= blog.title %> | My Blog</title>
+    <style>
+      .blog-cover {
+        height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+      .blog-cover:hover {
+        transform: scale(1.01);
+      }
+      .blog-content {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        white-space: pre-wrap;
+      }
+      .author-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+      .author-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .comment-card {
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid #0d6efd;
+        transition: all 0.3s ease;
+      }
+      .comment-card:hover {
+        background: rgba(255, 255, 255, 0.07);
+      }
+      .profile-img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-light">
+    <%- include('./partials/nav') %>
+    
+    <div class="container mt-5">
+      <!-- Blog Header -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8">
+          <h1 class="display-4 fw-bold mb-4"><%= blog.title %></h1>
+          
+          <!-- Meta Information -->
+          <div class="d-flex align-items-center mb-4">
+            <div class="me-3">
+              <% if (blog.createdBy.profileImageURL) { %>
+                <img src="<%= blog.createdBy.profileImageURL %>" class="profile-img" alt="<%= blog.createdBy.fullName %>">
+              <% } else { %>
+                <div class="profile-img d-flex align-items-center justify-content-center bg-primary">
+                  <%= blog.createdBy.fullName.charAt(0).toUpperCase() %>
+                </div>
+              <% } %>
+            </div>
+            <div>
+              <p class="mb-0 fw-bold"><%= blog.createdBy.fullName %></p>
+              <small class="text-white">
+                <%= new Date(blog.createdAt).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                }) %>
+                • <%= Math.ceil(blog.body.split(' ').length / 200) %> min read
+              </small>
+            </div>
+          </div>
+          
+          <!-- Cover Image -->
+          <img src="<%= blog.coverImageURL %>" class="blog-cover w-100 mb-5" alt="<%= blog.title %>">
+          
+          <!-- Blog Content -->
+          <div class="blog-content mb-5"><%= blog.body %></div>
+          
+          <!-- Tags -->
+          <% if (blog.tags && blog.tags.length > 0) { %>
+            <div class="mb-5">
+              <% blog.tags.forEach(tag => { %>
+                <span class="badge bg-secondary me-2 mb-2">#<%= tag %></span>
+              <% }); %>
+            </div>
+          <% } %>
+        </div>
+      </div>
+      
+      <!-- Author Section -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8">
+          <div class="author-card p-4 d-flex align-items-center">
+            <div class="flex-shrink-0 me-4">
+              <% if (blog.createdBy.profileImageURL) { %>
+                <img src="<%= blog.createdBy.profileImageURL %>" class="profile-img" alt="<%= blog.createdBy.fullName %>">
+              <% } else { %>
+                <div class="profile-img d-flex align-items-center justify-content-center bg-primary">
+                  <%= blog.createdBy.fullName.charAt(0).toUpperCase() %>
+                </div>
+              <% } %>
+            </div>
+            <div>
+              <h5 class="mb-1 text-white">About the author</h5>
+              <p class="mb-2 "><%= blog.createdBy.fullName %></p>
+              <% if (blog.createdBy.bio) { %>
+                <p class="mb-0 text-white"><%= blog.createdBy.bio %></p>
+              <% } else { %>
+                <p class="mb-0 text-white">The author hasn't written a bio yet.</p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Comments Section -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h3 class="mb-4">
+            Comments <span class="badge bg-primary rounded-pill"><%= comments.length %></span>
+          </h3>
+          
+          <!-- Comment Form -->
+          <% if (locals.user) { %>
+            <form action="/blog/comment/<%= blog._id %>" method="post" class="mb-5">
+              <div class="input-group">
+                <input type="text" 
+                       name="content" 
+                       class="form-control bg-dark text-light border-secondary" 
+                       placeholder="Share your thoughts..."
+                       aria-label="Comment input"
+                       aria-describedby="comment-button">
+                <button class="btn btn-primary" type="submit" id="comment-button">
+                  <i class="fas fa-paper-plane me-1"></i> Post
+                </button>
+              </div>
+            </form>
+          <% } else { %>
+            <div class="alert alert-info mb-5">
+              <a href="/login" class="text-decoration-none">Sign in</a> to leave a comment.
+            </div>
+          <% } %>
+          
+          <!-- Comments List -->
+          <div class="mb-5">
+            <% if (comments.length > 0) { %>
+              <% comments.forEach(comment => { %>
+                <div class="comment-card p-3 mb-3 rounded">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                      <% if (comment.createdBy.profileImageURL) { %>
+                        <img src="<%= comment.createdBy.profileImageURL %>" class="profile-img" alt="<%= comment.createdBy.fullName %>">
+                      <% } else { %>
+                        <div class="profile-img d-flex align-items-center justify-content-center bg-primary">
+                          <%= comment.createdBy.fullName.charAt(0).toUpperCase() %>
+                        </div>
+                      <% } %>
+                    </div>
+                    <div class="flex-grow-1">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0 fw-bold"><%= comment.createdBy.fullName %></h6>
+                        <small class="text-white">
+                          <%= new Date(comment.createdAt).toLocaleDateString() %>
+                        </small>
+                      </div>
+                      <p class="mb-0"><%= comment.content %></p>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            <% } else { %>
+              <div class="text-center py-4 text-white">
+                <i class="far fa-comment-dots fa-2x mb-3"></i>
+                <p>No comments yet. Be the first to share your thoughts!</p>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/footer') %>
+    <%- include('./partials/script') %>
+    
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+  </body>
+</html>

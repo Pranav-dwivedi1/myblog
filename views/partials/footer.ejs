@@ -1,0 +1,143 @@
+i   <!-- Footer -->
+<footer class="bg-dark text-light py-5 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- About Section -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <h5 class="mb-3">
+          <i class="fas fa-blog me-2"></i>Blogies
+        </h5>
+        <p class="text-white">
+          A modern blogging platform where you can share your thoughts, ideas, and stories with the world. 
+          Connect with fellow bloggers and discover amazing content.
+        </p>
+        <div class="social-links text-center">
+          <a href="https://www.linkedin.com/in/pranavdwivedi07" target="_blank" class="text-light me-3" title="LinkedIn">
+            <i class="fab fa-linkedin fa-lg"></i>
+          </a>
+          <a href="https://www.facebook.com/pranav.dwivedi.777" target="_blank" class="text-light me-3" title="Facebook">
+            <i class="fab fa-facebook fa-lg"></i>
+          </a>
+          <a href="https://github.com/Pranav-dwivedi1" target="_blank" class="text-light me-3" title="GitHub">
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+          <a href="mailto:pranav01dev@gmail.com" class="text-light me-3" title="Email">
+            <i class="fas fa-envelope fa-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="/" class="text-white text-decoration-none">
+              <i class="fas fa-home me-2"></i>Home
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/about" class="text-white text-decoration-none">
+              <i class="fas fa-info-circle me-2"></i>About
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="/contact" class="text-white text-decoration-none">
+              <i class="fas fa-envelope me-2"></i>Contact
+            </a>
+          </li>
+          <% if (locals.user) { %>
+          <li class="mb-2">
+            <a href="/blog/add-new" class="text-white text-decoration-none">
+              <i class="fas fa-plus-circle me-2"></i>Add Blog
+            </a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h6 class="mb-3">Contact Information</h6>
+        <div class="contact-info">
+          <div class="mb-3">
+            <i class="fas fa-phone me-2 text-primary"></i>
+            <a href="tel:+918770676950" class="text-white text-decoration-none">+91 8770676950</a>
+          </div>
+          <div class="mb-3">
+            <i class="fas fa-envelope me-2 text-primary"></i>
+            <a href="mailto:pranav01dev@gmail.com" class="text-white text-decoration-none">pranav01dev@gmail.com</a>
+          </div>
+          <div class="mb-3">
+            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+            <span class="text-white">India</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h6 class="mb-3">Stay Updated</h6>
+        <p class="text-white small">Subscribe to our newsletter for the latest blog posts and updates.</p>
+        <form class="d-flex">
+          <input type="email" class="form-control form-control-sm me-2" placeholder="Your email">
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <hr class="my-4">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p class="mb-0 text-white small">
+          © 2024 Blogies. All rights reserved.
+        </p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p class="mb-0 text-white small">
+          Made with <i class="fas fa-heart text-danger"></i> by 
+          <a href="https://www.linkedin.com/in/pranavdwivedi07" target="_blank" class="text-decoration-none">Pranav Dwivedi</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Footer Styling */
+  footer {
+    margin-top: auto;
+  }
+  
+  .social-links a {
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  
+  .social-links a:hover {
+    transform: translateY(-2px);
+    color: #0d6efd !important;
+  }
+  
+  .contact-info a:hover {
+    color: #0d6efd !important;
+  }
+  
+  footer .list-unstyled a:hover {
+    color: #0d6efd !important;
+  }
+  
+  /* Ensure footer stays at bottom */
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+</style>

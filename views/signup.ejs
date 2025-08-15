@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Sign Up - Blogies</title>
+    <style>
+      .form-card {
+        background-color: #1f1f1f;
+        border-radius: 1rem;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="bg-dark text-light">
+    <%- include('./partials/nav') %>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+      <div class="col-md-6 col-lg-5">
+        <div class="p-4 form-card">
+          <h2 class="text-center mb-3">Create Your Account</h2>
+          <p class="text-center text-white mb-4">
+            Join <strong>Blogies</strong> and start sharing your thoughts today.
+          </p>
+
+          <form action="/user/signup" method="POST">
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input
+                type="text"
+                name="fullName"
+                id="fullName"
+                class="form-control bg-dark text-light border-secondary"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                class="form-control bg-dark text-light border-secondary"
+                required
+              />
+              <div class="form-text text-white">We'll never share your email.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control bg-dark text-light border-secondary"
+                required
+              />
+            </div>
+
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+            </div>
+
+            <p class="text-center text-white">
+             Already have an account?
+            <a href="/user/signin" class="text-decoration-none text-primary">Sign In</a>
+          </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/footer') %>
+    <%- include('./partials/script') %>
+  </body>
+</html>

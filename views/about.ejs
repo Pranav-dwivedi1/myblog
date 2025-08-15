@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me - Pranav Dwivedi</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('./partials/head') %>
+  <%- include('./partials/nav') %>
+
+  <!-- Hero Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h1 class="display-4 fw-bold mb-3">Hi, I'm <%= user?.fullName || 'Pranav Dwivedi' %></h1>
+          <p class="lead mb-4">Full Stack Web Developer (React.js, Next.js, Node.js)</p>
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            <a href="mailto:<%= user?.email || 'pranav01dev@gmail.com' %>" class="btn btn-outline-primary btn-sm">
+              <i class="fas fa-envelope me-1"></i> <%= user?.email || 'pranav01dev@gmail.com' %>
+            </a>
+            <a href="tel:<%= user?.phone || '+918770676950' %>" class="btn btn-outline-success btn-sm">
+              <i class="fas fa-phone me-1"></i> <%= user?.phone || '+918770676950' %>
+            </a>
+            <a href="https://linkedin.com/in/pranavdwivedi07/" class="btn btn-outline-info btn-sm" target="_blank">
+              <i class="fab fa-linkedin me-1"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Body Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <h2 class="mb-4 text-center fw-bold">Professional Summary</h2>
+          <p class="text-muted text-center mb-5">
+            I am a Full Stack Web Developer with 1.5 years of experience building modern, responsive, and secure web applications.
+            My stack includes React.js, Next.js, Node.js, MongoDB, Tailwind CSS, and Express.js.
+          </p>
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                  <h4 class="card-title fw-bold mb-4">Experience Highlights</h4>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item border-0 py-2"><i class="fas fa-check-circle text-primary me-2"></i> Built scalable apps using React.js, Next.js, Node.js, Express.js</li>
+                    <li class="list-group-item border-0 py-2"><i class="fas fa-check-circle text-primary me-2"></i> Integrated REST APIs and secured with JWT authentication</li>
+                    <li class="list-group-item border-0 py-2"><i class="fas fa-check-circle text-primary me-2"></i> Translated Figma designs into responsive UIs with Tailwind CSS</li>
+                    <li class="list-group-item border-0 py-2"><i class="fas fa-check-circle text-primary me-2"></i> Worked with MongoDB & MySQL for full CRUD functionality</li>
+                    <li class="list-group-item border-0 py-2"><i class="fas fa-check-circle text-primary me-2"></i> Integrated Razorpay payments and used Framer Motion for animations</li>
+                    <li class="list-group-item border-0 py-2"><i class="fas fa-check-circle text-primary me-2"></i> Collaborated using GitHub, Agile methodology, and manual testing</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                  <h4 class="card-title fw-bold mb-4">Technical Skills</h4>
+                  <div class="mb-4">
+                    <h5 class="fw-bold text-primary">Frontend</h5>
+                    <p>HTML, CSS, JavaScript, React.js, Next.js</p>
+                  </div>
+                  <div class="mb-4">
+                    <h5 class="fw-bold text-primary">Styling</h5>
+                    <p>Tailwind CSS, Bootstrap, Framer Motion, GSAP</p>
+                  </div>
+                  <div class="mb-4">
+                    <h5 class="fw-bold text-primary">Backend & DB</h5>
+                    <p>Node.js, Express.js, MongoDB, MySQL</p>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold text-primary">Tools</h5>
+                    <p>Git, GitHub, Postman, VS Code, Chrome DevTools</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mt-4 border-0 shadow-sm">
+            <div class="card-body">
+              <h4 class="fw-bold mb-3">Education</h4>
+              <div class="d-flex align-items-start">
+                <i class="fas fa-graduation-cap text-primary fs-3 me-3 mt-1"></i>
+                <div>
+                  <h5 class="fw-bold">B.Tech in Computer Science (2019-2023)</h5>
+                  <p class="mb-1">Truba Institute of Engineering & Information Technology, Bhopal</p>
+                  <p class="text-muted"><strong>7.6 CGPA</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="fw-bold mb-3">Let's Collaborate!</h2>
+          <p class="mb-4">If you're looking for a skilled full stack developer, feel free to reach out.</p>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="mailto:<%= user?.email || 'pranav01dev@gmail.com' %>" class="btn btn-primary btn-lg">
+              <i class="fas fa-paper-plane me-1"></i> Contact Me
+            </a>
+            <a href="https://linkedin.com/in/pranavdwivedi07/" class="btn btn-outline-light btn-lg" target="_blank">
+              <i class="fab fa-linkedin me-1"></i> Connect
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%- include('./partials/script') %>
+  <%- include('./partials/footer') %>
+
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Sign In - Blogies</title>
+    <style>
+      .form-card {
+        background-color: #1f1f1f;
+        border-radius: 1rem;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body class="bg-dark text-light">
+    <%- include('./partials/nav') %>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+      <div class="col-md-6 col-lg-5">
+        <div class="p-4 form-card">
+          <h2 class="text-center mb-3">Welcome Back</h2>
+          <p class="text-center text-white mb-4">Sign in to continue blogging on <strong>Blogies</strong>.</p>
+
+          <form action="/user/signin" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                class="form-control bg-dark text-light border-secondary"
+                id="email"
+                name="email"
+                required
+              />
+              <div class="form-text text-white">We'll never share your email.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control bg-dark text-light border-secondary"
+                id="password"
+                name="password"
+                required
+              />
+            </div>
+
+            <div class="d-grid mb-3">
+              <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+            </div>
+
+            <p class="text-center text-white">
+              Don't have an account?
+              <a href="/user/signup" class="text-decoration-none text-primary">Sign Up</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/footer') %>
+    <%- include('./partials/script') %>
+  </body>
+</html>
