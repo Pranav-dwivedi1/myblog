@@ -4,8 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-  "start": "node app.js"
+  "start": "node index.js",
+  "dev": "nodemon index.js"
 },
+
   "author": "",
   "license": "ISC",
   "dependencies": {
