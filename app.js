@@ -12,7 +12,7 @@ const addbLOGRoutes = require('./router/blog');
 const aboutRouter = require('./router/about');
 const contactRouter = require('./router/contact');
 const searchRoutes = require('./router/search');
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 // Database connection
 mongoose.connect(process.env.MONGO_Url)
@@ -84,6 +84,6 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use(express.static(path.resolve('./public')));
 
 // Start server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`Server running on port ${process.env.PORT || 3000}`);
 });
