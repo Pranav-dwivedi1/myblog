@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo');
 const Blog = require('./models/blogs');
 const userModel = require('./models/user');
 const userRoutes = require('./router/user');
-const addbLOGRoutes = require('./router/blog');
+const addBlogRoutes = require('./router/blog');
 const aboutRouter = require('./router/about');
 const contactRouter = require('./router/contact');
 const searchRoutes = require('./router/search');
@@ -76,19 +76,19 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/user', userRoutes);
-app.use('/blog', addbLOGRoutes);
+app.use('/blog', addBlogRoutes);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
 app.use('/', searchRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use(express.static(path.resolve('./public')));
 
-// Start server only in development
+// Start server only in development for local testing
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
 
-// Export for Vercel
+// Export app for Vercel deployment
 module.exports = app;
