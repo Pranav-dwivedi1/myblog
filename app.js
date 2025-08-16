@@ -83,7 +83,5 @@ app.use('/', searchRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use(express.static(path.resolve('./public')));
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export the app for Vercel serverless functions
+module.exports = app;
