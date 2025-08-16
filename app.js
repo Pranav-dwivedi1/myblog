@@ -25,10 +25,10 @@ mongoose.connect(process.env.MONGO_Url)
 
 // Session middleware
 app.use(session({
-  secret: 'your-secret-key',
+  secret: process.env.SESSION_SECRET || 'your-secret-key',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/blogify' }),
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_Url }),
   cookie: { maxAge: 1000 * 60 * 60 * 24 } // 1 day
 }));
 
